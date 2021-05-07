@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View,TextInput,TouchableOpacity,ToastAndroid,Modal, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
+import { StyleSheet, Text, View,TextInput,TouchableOpacity,ToastAndroid,Modal, ScrollView, KeyboardAvoidingView, Alert,FlatList } from 'react-native';
 import {ListItem} from 'react-native-elements'
 import db from '../config'
 import firebase from 'firebase'
@@ -32,19 +32,21 @@ export default class Homescreen extends React.Component{
 
     renderItem = ({ item, i }) => {
         return (
-            <ListItem
-            key={i}
-            title={item.item_name}
-            subtitile={item.description}
-            titleStyle={{color:'black',fontWeight:'bold'}}
-            rightElement={
-                <TouchableOpacity style={style.button}>
-                    <Text style={{color:'#ff5722'}}>EXCHANGE</Text>
+        <View style={{ flex: 1, paddingTop: 30 }}>
+            <ListItem bottomDivider>
+                <ListItem.Content>
+                    <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
+                        {item.item_name}
+                    </ListItem.Title>
+                    <ListItem.Subtitle>
+                        {item.description}
+                    </ListItem.Subtitle>
+                </ListItem.Content>
+                <TouchableOpacity style={styles.button} onPress={() => { this.props.navigation.navigate('RecieverDeatails',{"details":item}) }}>
+                    <Text style={{ color: '#ffff' }}>View</Text>
                 </TouchableOpacity>
-            }
-            bottomDivider
-            />
-        
+            </ListItem>
+        </View>
         )
     }
 

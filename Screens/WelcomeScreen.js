@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View,TextInput,TouchableOpacity,ToastAndroid,Modal, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 
-
+import Homescreen from './HomeScreen'
 import db from '../config'
 import firebase from 'firebase'
 
@@ -141,7 +141,7 @@ confirmPassWord:'',
 
               firebase.auth().signInWithEmailAndPassword(email,password)
               .then(()=>{
-                this.props.navigation.navigate('DonateBooks')
+                this.props.navigation.navigate('Home')
                 
               })
               .catch(function(error){

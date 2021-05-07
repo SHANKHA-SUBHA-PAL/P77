@@ -19,7 +19,7 @@ description:''
 
 addItem=(itemName,description)=>{
     var userName = this.state.userName
-    db.colection('Exchange_requests').add({
+    db.collection('Exchange_requests').add({
         "userName":userName,
         "item_name":itemName,
         "description":description
@@ -41,8 +41,26 @@ addItem=(itemName,description)=>{
 render(){
     return(
         <View style={styles.container}>
-            <TextInput style={styles.formTextInput}/>
-            <TextInput style={styles.formTextInput}/>
+            <TextInput style={styles.formTextInput}
+            placeholder='Item Name'
+            onChangeText={(text) => {
+                this.setState({
+                    itemName: text
+                })
+            }}
+            value={this.state.itemName}
+        />
+            <TextInput style={[styles.formTextInput,{height:300}]}
+            multiline
+            numberOfLines={8}
+            placeholder="Description"
+            onChangeText={(text) => {
+                this.setState({
+                    description: text
+                })
+            }}
+            value={this.state.description}
+        />
             <TouchableOpacity style={styles.loginButton} 
             onPress={()=>{this.addItem(this.state.itemName,this.state.description)}}
             >
